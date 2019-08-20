@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  server-embetty:
+    build: 
+        context: ./server
+        dockerfile: Dockerfile
+    image: server-embetty-image
+    container_name: server-embetty-container
+    networks: 
+      - embetty-network
+    environment:
+      - VALID_ORIGINS=http://localhost:8081
+    ports:
+      - 8080:8080
+
+  web-embetty:
+    build: 
+        context: ./web
+        dockerfile: Dockerfile      
+    image: web-embetty-image
+    container_name: web-embetty-container
+    networks: 
+      - embetty-network
+    ports:
+      - 8081:8081
+
+networks:
+  embetty-network:
+#       
+#docker ps -a -q
+#sudo docker stop $(sudo docker ps -a -q)
+#sudo docker rm $(sudo docker ps -a -q)
+#sudo docker-compose up --build
+#sudo docker system prune
+#sudo docker rmi $(sudo docker images -a -q)
+#docker exec -ti rest-mybrunoni-container /bin/bash
+#docker exec -it nginx-mybrunoni-container /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh"
